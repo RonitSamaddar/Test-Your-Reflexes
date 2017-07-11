@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript</title>
+	<style type="text/css">
+		body{
+			margin: 0px;
+			padding: 0px;
+		}
+		#time{
+			font-weight: bold;
+			font-size: 125%;
+		}
+		#top1{
+			position: relative;
+			top: -21px;
+			margin:0px;
+			padding:0px;
+			height:140px;
+			width:100%;
+			background-image:url("timer.jpg");
+			color:white;
+		}
+		#container{
+			top: -21px;
+			position: relative;
+			width: 100%;
+			height: 430px;
+			background-image: url("back.jpg");
+			padding-bottom: 0px;
+			margin-bottom: 0px;
+		}
+		#bottom{
+			position: relative;
+			top:-21px;
+			height:15px;
+			background-color: #2D2D2D;
+			width:100%;
+		}
+		#box{
+			position: relative;
+			height:250px;
+			width: 250px;
+			left: 200px;
+			top:30px;
+			background-color: yellow;
+		}
+		#timer{
+			height:70px;
+			float:right;
+			margin-right:30px;
+			margin-top:40px;
+		}
+		#clear{
+
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		function disappear(id){
+			document.getElementById(id).style.display="none";
+		}
+		function appear(id){
+			document.getElementById(id).style.display="flex";
+		}
+
+		function rep(){
+			var shape=Math.floor(Math.random()*2);
+			var colours=["red","pink","yellow","blue","greem","orange","brown","violet","black"];
+			var color=Math.floor(Math.random()*9);
+			var height=Math.floor(Math.random()*300)+50;
+			var width=height;
+			var top=Math.floor(Math.random()*(420-height));
+			var left=Math.floor(Math.random()*(1350-height));
+			document.getElementById('box').style.borderRadius=(50*shape)+"%"
+			document.getElementById('box').style.backgroundColor=colours[color];
+			
+			document.getElementById('box').style.height=height+"px";
+			document.getElementById('box').style.width=width+"px";
+			document.getElementById('box').style.top=top+"px";
+			document.getElementById('box').style.left=left+"px";
+			appear("box");	
+			t1=new Date().getTime();		
+			document.getElementById('box').onclick=function(){
+				t2=new Date().getTime();
+				disappear("box");
+				document.getElementById('time').innerHTML="Your time: "+(t2-t1)/1000+"s";
+				window.setTimeout(rep,1200);
+			}
+
+			
+		}
+
+
+		function ready(){
+			t1=new Date().getTime();
+			document.getElementById('box').onclick=function(){
+				t2=new Date().getTime();
+				disappear("box");
+				document.getElementById('time').innerHTML="Your time: "+(t2-t1)/1000+"s";
+				window.setTimeout(rep,1200);
+
+			}
+		}
+	</script>
+	
+</head>
+<body onload="ready()">
+<div id="top1">
+	<img src="timer.jpg" id="timer"/>
+	<h1>Test Your Reactions!</h1>
+	<p>Click on the boxes and circles as quickly u can</p>
+	<p id="time">Your time: </p>
+
+</div>
+
+	<div id="container">
+	<div id="box"></div>
+	</div>
+<div id="bottom"></div>
+</body>
+</html>
